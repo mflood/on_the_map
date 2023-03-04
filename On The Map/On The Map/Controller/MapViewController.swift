@@ -1,23 +1,23 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  On The Map
 //
 //  Created by Matthew Flood on 3/4/23.
 //
 
+import Foundation
+
+
 import UIKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
-    @IBAction func testMapApi(_ sender: Any) {
-        getStudentLocations()
-    }
-
+    
+    
+    
 }
 
