@@ -49,7 +49,7 @@
         <!--MAP-->
         <scene sceneID="CXa-Sr-NeX">
             <objects>
-                <viewController id="vDI-ld-pHv" sceneMemberID="viewController">
+                <viewController id="vDI-ld-pHv" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="141-8a-Jf6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,6 +64,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="MAP" id="BxU-sh-udw"/>
+                    <connections>
+                        <outlet property="mapView" destination="HW9-PY-ttM" id="LYX-2y-9PW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ile-Vc-SZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

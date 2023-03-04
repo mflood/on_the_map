@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class ViewController: UIViewController {
 
 
     @IBAction func testMapApi(_ sender: Any) {
-        getStudentLocations()
+       
     }
 
 }

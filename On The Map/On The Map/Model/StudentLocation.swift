@@ -15,11 +15,11 @@ class StudentLocation: Codable {
     var lastName: String
     var mapString: String   // (Mountain View, CA)
     var mediaUrl: String    // the URL provided by the student (https://udacity.com)
-    var latitude: Int       // ranges from -90 to 90 (37.386052)
-    var longitude: Int      // ranges from -180 to 180 (-122.083851)
+    var latitude: Float       // ranges from -90 to 90 (37.386052)
+    var longitude: Float      // ranges from -180 to 180 (-122.083851)
     var createdAt: String
     var updatedAt: String
-    var Acl: String // the Parse access and control list (Public Read and Write)
+    var Acl: String? // the Parse access and control list (Public Read and Write)
     
     
     enum CodingKeys: String, CodingKey {
@@ -37,15 +37,8 @@ class StudentLocation: Codable {
     }
 }
 
-func getStudentLocations() {
-    
-    let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt")!)
-    let session = URLSession.shared
-    let task = session.dataTask(with: request) { data, response, error in
-      if error != nil { // Handle error...
-          return
-      }
-      print(String(data: data!, encoding: .utf8)!)
-    }
-    task.resume()
+class StudentLocationResponse: Codable {
+        
+    var results: [StudentLocation]
 }
+

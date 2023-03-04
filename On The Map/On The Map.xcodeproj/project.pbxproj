@@ -16,6 +16,7 @@
 		6F9D7D6029B3A84B00104AA6 /* OtmTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D5F29B3A84B00104AA6 /* OtmTabBarController.swift */; };
 		6F9D7D6329B3AA9500104AA6 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D6229B3AA9500104AA6 /* StudentLocation.swift */; };
 		6F9D7D6529B3AD6500104AA6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D6429B3AD6500104AA6 /* MapViewController.swift */; };
+		6F9D7D6729B3BA6B00104AA6 /* OnTheMapApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D6629B3BA6B00104AA6 /* OnTheMapApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6F9D7D5F29B3A84B00104AA6 /* OtmTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtmTabBarController.swift; sourceTree = "<group>"; };
 		6F9D7D6229B3AA9500104AA6 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		6F9D7D6429B3AD6500104AA6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6F9D7D6629B3BA6B00104AA6 /* OnTheMapApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				6F9D7D6229B3AA9500104AA6 /* StudentLocation.swift */,
+				6F9D7D6629B3BA6B00104AA6 /* OnTheMapApiClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F9D7D4F29B3A7AF00104AA6 /* ViewController.swift in Sources */,
+				6F9D7D6729B3BA6B00104AA6 /* OnTheMapApiClient.swift in Sources */,
 				6F9D7D6529B3AD6500104AA6 /* MapViewController.swift in Sources */,
 				6F9D7D4B29B3A7AF00104AA6 /* AppDelegate.swift in Sources */,
 				6F9D7D4D29B3A7AF00104AA6 /* SceneDelegate.swift in Sources */,
