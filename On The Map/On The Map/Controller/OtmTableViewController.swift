@@ -3,7 +3,7 @@
 //  On The Map
 //
 //  Created by Matthew Flood on 3/5/23.
-//
+// NOTE: To scroll in the simulator, hold down the track pad and then scroll
 
 import Foundation
 
@@ -13,12 +13,14 @@ import MapKit
 
 class OtmTableViewController: UITableViewController {
 
+    // MARK: - Shared data
     var studentLocations: [StudentLocation]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.studentLocations
     }
     
+    // MARK: - View Setup
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,7 +28,7 @@ class OtmTableViewController: UITableViewController {
         self.tableView.dataSource = self
     }
     
-    
+    // MARK: - Data Provider
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -53,7 +55,17 @@ class OtmTableViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: - Select Cell
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        // If the studentLocation has a mediaUrl, open it in safari
+        let studentLocation = self.studentLocations[(indexPath as NSIndexPath).row]
+        if let url = URL(string: studentLocation.mediaUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 
