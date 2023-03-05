@@ -17,10 +17,21 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
 
+    var studentLocations: [StudentLocation]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.studentLocations
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.loadStudentLocations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let stu = self.studentLocations
+        print(stu)
     }
     
     func loadStudentLocations() {
@@ -38,8 +49,6 @@ class MapViewController: UIViewController {
         DispatchQueue.main.async {
             self.mapView.addAnnotations(annotations)
         }
-        
-    
     }
     
     func makeAnnotations(studentLocations: [StudentLocation]) -> [MKPointAnnotation] {
