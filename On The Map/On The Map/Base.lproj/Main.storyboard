@@ -23,9 +23,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In"/>
                                 <connections>
-                                    <segue destination="3KR-dh-rTz" kind="popoverPresentation" popoverAnchorView="WYP-49-BIN" id="T8V-ox-KhY">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="3KR-dh-rTz" kind="showDetail" id="T8V-ox-KhY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUw-b9-YGG">
@@ -85,6 +83,7 @@
                     <connections>
                         <segue destination="vDI-ld-pHv" kind="relationship" relationship="viewControllers" id="uty-cN-TOQ"/>
                         <segue destination="lbe-eV-kKH" kind="relationship" relationship="viewControllers" id="WTP-RL-EeC"/>
+                        <segue destination="CKD-6N-PPn" kind="relationship" relationship="viewControllers" id="35k-BN-39D"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESY-bq-E3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -131,6 +130,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="People" id="ei4-Lw-Goz"/>
+                    <navigationItem key="navigationItem" id="nRK-5n-GM7"/>
                     <connections>
                         <outlet property="tableView" destination="JlO-3g-JnD" id="DWw-qB-oSJ"/>
                     </connections>
@@ -139,7 +139,27 @@
             </objects>
             <point key="canvasLocation" x="2166" y="284"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="gMJ-Fa-gpt">
+            <objects>
+                <navigationController id="CKD-6N-PPn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ICk-Ls-cbm"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2n4-3b-bTZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lbe-eV-kKH" kind="relationship" relationship="rootViewController" id="P1w-oq-xpY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JgL-sj-zwl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1094" y="729"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WTP-RL-EeC"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
