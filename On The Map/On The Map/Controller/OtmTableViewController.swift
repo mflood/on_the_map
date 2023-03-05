@@ -32,7 +32,7 @@ class OtmTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return self.studentLocations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,9 +44,7 @@ class OtmTableViewController: UITableViewController {
         
         // Set the name and image
         cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
-       // cell.imageView?.image = meme.memedImage
-        
-        
+        cell.imageView?.image = UIImage(named: "icon_pin")
         
         // If the cell has a detail label, we will put the evil scheme in.
         if let detailTextLabel = cell.detailTextLabel {
