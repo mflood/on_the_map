@@ -96,7 +96,7 @@
             </objects>
             <point key="canvasLocation" x="-8.3969465648854964" y="3.5211267605633805"/>
         </scene>
-        <!--MAP-->
+        <!--Map View Controller-->
         <scene sceneID="CXa-Sr-NeX">
             <objects>
                 <viewController id="vDI-ld-pHv" customClass="MapViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                         <viewLayoutGuide key="safeArea" id="wYe-UO-wBM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MAP" id="BxU-sh-udw"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="BxU-sh-udw"/>
                     <connections>
                         <outlet property="mapView" destination="HW9-PY-ttM" id="LYX-2y-9PW"/>
                     </connections>
@@ -134,7 +134,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="vDI-ld-pHv" kind="relationship" relationship="viewControllers" id="uty-cN-TOQ"/>
-                        <segue destination="lbe-eV-kKH" kind="relationship" relationship="viewControllers" id="WTP-RL-EeC"/>
                         <segue destination="CKD-6N-PPn" kind="relationship" relationship="viewControllers" id="35k-BN-39D"/>
                     </connections>
                 </tabBarController>
@@ -142,7 +141,7 @@
             </objects>
             <point key="canvasLocation" x="1098" y="4"/>
         </scene>
-        <!--People-->
+        <!--Otm Table View Controller-->
         <scene sceneID="ltd-28-R5G">
             <objects>
                 <tableViewController id="lbe-eV-kKH" customClass="OtmTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
@@ -181,7 +180,7 @@
                             <outlet property="delegate" destination="lbe-eV-kKH" id="BVR-xQ-sPQ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="People" id="ei4-Lw-Goz"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="icon_listview-selected" id="ei4-Lw-Goz"/>
                     <navigationItem key="navigationItem" id="nRK-5n-GM7"/>
                     <connections>
                         <outlet property="tableView" destination="JlO-3g-JnD" id="DWw-qB-oSJ"/>
@@ -189,13 +188,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvp-MK-ghr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2166" y="284"/>
+            <point key="canvasLocation" x="2593" y="608"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="gMJ-Fa-gpt">
             <objects>
                 <navigationController id="CKD-6N-PPn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ICk-Ls-cbm"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" id="ICk-Ls-cbm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2n4-3b-bTZ">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -209,10 +208,11 @@
             <point key="canvasLocation" x="1094" y="729"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="WTP-RL-EeC"/>
-    </inferredMetricsTieBreakers>
     <resources>
+        <image name="icon_listview-deselected" width="75" height="50"/>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-deselected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
