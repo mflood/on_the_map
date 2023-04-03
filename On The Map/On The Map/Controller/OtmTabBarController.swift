@@ -10,6 +10,8 @@ import UIKit
 
 class OtmTabBarController: UITabBarController {
 
+    var udacitySessionResponse: UdacitySessionResponse!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

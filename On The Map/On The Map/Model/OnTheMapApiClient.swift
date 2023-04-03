@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 
 class OnTheMapApiClient {
@@ -36,6 +34,7 @@ func getStudentLocations(callback: @escaping (_ studentLocations: [StudentLocati
     
     let request = URLRequest(url: OnTheMapApiClient.Endpoint.newestLocations.url)
     let session = URLSession.shared
+    
     let task = session.dataTask(with: request) { data, response, error in
       if error != nil { // Handle error...
           return
