@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let stu = self.studentLocations
-        print(stu)
+        print("Map view appearing: \(stu?.count) studentLocations")
     }
     
     func loadStudentLocations() {

@@ -42,7 +42,7 @@ func getStudentLocations(callback: @escaping (_ studentLocations: [StudentLocati
         guard let data = data else {
             return
         }
-        print(String(data: data, encoding: .utf8)!)
+        // print(String(data: data, encoding: .utf8)!)
         
         let decoder = JSONDecoder()
         var response: StudentLocationResponse

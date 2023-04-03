@@ -28,9 +28,11 @@ class OtmTabBarController: UITabBarController {
             return
         }
         
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.studentLocations = studentLocations
+        DispatchQueue.main.async {
+            let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            appDelegate.studentLocations = studentLocations
+        }
     }
     
 }

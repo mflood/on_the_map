@@ -7,6 +7,8 @@
 
 import UIKit
 
+let DEBUG_SKIP_LOGIN: Bool = true
+
 class LoginViewController: UIViewController {
 
     
@@ -42,6 +44,13 @@ class LoginViewController: UIViewController {
     
     func handleUdacitySessionResponse(udacitySessionResponse: UdacitySessionResponse?, error: String?) {
         
+        if DEBUG_SKIP_LOGIN {
+            let fakeResponse = UdacitySessionResponse(account: UdacityAccount(registered: true, key: "04305036399"),
+                                                      session: UdacitySession(id: "7740545436S0b45310ec01d724572bce219437a2231", expiration: "2023-04-04T00:24:08.238983Z"))
+            navigateToMainApp(udacitySessionResponse: fakeResponse)
+            return
+        }
+        
         if let error = error {
             DispatchQueue.main.async { // IfKU4D%t2@TBE&q&
                 self.showAlert(title: "Login Failed", message: error)
@@ -55,9 +64,16 @@ class LoginViewController: UIViewController {
     
     func navigateToMainApp(udacitySessionResponse: UdacitySessionResponse) {
         DispatchQueue.main.async {
+            self.passwordTextfield.text = ""
+            
             let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmTabBarController") as! OtmTabBarController
-            otmTabBarController.udacitySessionResponse = udacitySessionResponse
-            self.present(otmTabBarController, animated: true)
+            if self.navigationController != nil {
+                self.navigationController?.setViewControllers([otmTabBarController], animated: true)
+            } else {
+                otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+                self.present(otmTabBarController, animated: true)
+            }
+          
         }
     }
     
