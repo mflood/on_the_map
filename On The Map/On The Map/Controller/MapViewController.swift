@@ -20,21 +20,42 @@ class MapViewController: UIViewController {
     var studentLocations: [StudentInformation]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.studentLocations
+        return appDelegate.studentInformation
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addStudentLocationsToMap()
+        subscribeToNotifications()
+        mapView.delegate = self
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        addStudentLocationsToMap()
+    }
+
+    
+    func subscribeToNotifications() {
+        
+       
+        
+//       let studentInformationResponseSuccessNotification = Notification.Name("StudentInformationResponseSuccess")
+//     let studentInformationResponseFailureNotification = Notification.Name("StudentInformationResponseFailure")
+
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(forName: studentInformationResponseSuccessNotification ,
+                                               object: nil,
+                                               queue: nil) { (notification) in
+            DispatchQueue.main.async {
+                self.addStudentLocationsToMap()
+            }
+        }
+        
     }
     
     func addStudentLocationsToMap() {
-        
         let annotations = self.makeAnnotations(studentLocations: self.studentLocations)
         self.mapView.addAnnotations(annotations)
     }
@@ -64,14 +85,50 @@ class MapViewController: UIViewController {
             annotation.coordinate = coordinate
             annotation.title = "\(studentLocation.firstName) \(studentLocation.lastName)"
             annotation.subtitle = studentLocation.mediaUrl
+            if studentLocation.mediaUrl != "" {
+                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "yellow")
+                        pinView.pinTintColor = .yellow
+            }
             
             // Finally we place the annotation in an array of annotations.
             annotations.append(annotation)
         }
         return annotations
     }
-
-    
-    
 }
 
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+           let identifier = "marker"
+           var view: MKMarkerAnnotationView
+           
+           if let dequeuedView = mapView.dequeueReusableAnnotationView(
+                                    withIdentifier: identifier)
+                                        as? MKMarkerAnnotationView {
+               dequeuedView.annotation = annotation
+               view = dequeuedView
+           } else {
+               view =
+                   MKMarkerAnnotationView(annotation: annotation,
+               reuseIdentifier: identifier)
+               view.canShowCallout = true
+               view.markerTintColor = .green
+               view.rightCalloutAccessoryView = UIButton(type: .infoDark)
+               
+           }
+           return view
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? MKPointAnnotation {
+            if let urlString = annotation.subtitle,
+             let url = URL(string: urlString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+
+}

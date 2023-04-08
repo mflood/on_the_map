@@ -34,10 +34,12 @@ func getStudentLocations(callback: @escaping (_ studentLocations: [StudentInform
     let session = URLSession.shared
     
     let task = session.dataTask(with: request) { data, response, error in
-      if error != nil { // Handle error...
-          return
-      }
+        if error != nil { // Handle error...
+            callback(nil, error?.localizedDescription)
+            return
+        }
         guard let data = data else {
+            callback(nil, error?.localizedDescription)
             return
         }
         // print(String(data: data, encoding: .utf8)!)

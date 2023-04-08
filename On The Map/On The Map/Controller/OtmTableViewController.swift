@@ -19,7 +19,7 @@ class OtmTableViewController: UIViewController {
     var studentLocations: [StudentInformation]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.studentLocations
+        return appDelegate.studentInformation
     }
     
     // MARK: - View Setup
@@ -28,6 +28,10 @@ class OtmTableViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.peopleTableView.delegate = self
         self.peopleTableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.peopleTableView.reloadData()
     }
 }
 
