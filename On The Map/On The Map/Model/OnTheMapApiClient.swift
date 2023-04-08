@@ -19,7 +19,6 @@ class OnTheMapApiClient {
 
             case .newestLocations:
                 return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt"
-            
             }
         }
         
@@ -28,7 +27,6 @@ class OnTheMapApiClient {
         }
     }
 }
-
 
 func getStudentLocations(callback: @escaping (_ studentLocations: [StudentLocation]?, _ error: String?) -> Void) {
     

@@ -38,7 +38,6 @@ func getUdacitySession(udacitySessionRequest: UdacitySessionRequest, callback:  
     let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
         
         guard let data = data, error == nil else {
-            print("Error: \(error?.localizedDescription ?? "Unknown error")")
             callback(nil, error?.localizedDescription ?? "Unknown error")
             return
         }

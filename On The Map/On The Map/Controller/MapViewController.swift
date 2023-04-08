@@ -34,6 +34,9 @@ class MapViewController: UIViewController {
         print("Map view appearing: \(stu?.count) studentLocations")
     }
     
+
+    
+    
     func loadStudentLocations() {
         getStudentLocations(callback: handleGetAnnotations)
     }

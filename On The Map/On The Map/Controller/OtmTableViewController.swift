@@ -11,8 +11,10 @@ import Foundation
 import UIKit
 import MapKit
 
-class OtmTableViewController: UITableViewController {
-
+class OtmTableViewController: UIViewController {
+    
+    @IBOutlet var peopleTableView: UITableView!
+    
     // MARK: - Shared data
     var studentLocations: [StudentLocation]! {
         let object = UIApplication.shared.delegate
@@ -24,20 +26,20 @@ class OtmTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.peopleTableView.delegate = self
+        self.peopleTableView.dataSource = self
     }
+}
+
+// MARK: - TableView Delegate
+
+extension OtmTableViewController: UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: - Data Provider
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.studentLocations.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "OtmTableViewCell")!
         
@@ -58,7 +60,7 @@ class OtmTableViewController: UITableViewController {
     
     // MARK: - Select Cell
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // If the studentLocation has a mediaUrl, open it in safari
         let studentLocation = self.studentLocations[(indexPath as NSIndexPath).row]

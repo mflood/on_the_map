@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F5B5F7029DA13E300E05163 /* UdacityApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B5F6F29DA13E300E05163 /* UdacityApiClient.swift */; };
 		6F5B5F7229DA146400E05163 /* UdacitySchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B5F7129DA146400E05163 /* UdacitySchema.swift */; };
+		6F5B5F8029E1F4D600E05163 /* OtmRootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B5F7F29E1F4D600E05163 /* OtmRootNavigationController.swift */; };
 		6F9D7D4B29B3A7AF00104AA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D4A29B3A7AF00104AA6 /* AppDelegate.swift */; };
 		6F9D7D4D29B3A7AF00104AA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D4C29B3A7AF00104AA6 /* SceneDelegate.swift */; };
 		6F9D7D4F29B3A7AF00104AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D7D4E29B3A7AF00104AA6 /* LoginViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		6F5B5F6F29DA13E300E05163 /* UdacityApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityApiClient.swift; sourceTree = "<group>"; };
 		6F5B5F7129DA146400E05163 /* UdacitySchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacitySchema.swift; sourceTree = "<group>"; };
+		6F5B5F7F29E1F4D600E05163 /* OtmRootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtmRootNavigationController.swift; sourceTree = "<group>"; };
 		6F9D7D4729B3A7AF00104AA6 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9D7D4A29B3A7AF00104AA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F9D7D4C29B3A7AF00104AA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				6F9D7D4E29B3A7AF00104AA6 /* LoginViewController.swift */,
+				6F5B5F7F29E1F4D600E05163 /* OtmRootNavigationController.swift */,
 				6F9D7D5F29B3A84B00104AA6 /* OtmTabBarController.swift */,
 				6F9D7D6429B3AD6500104AA6 /* MapViewController.swift */,
 				6F9D7D6A29B5284D00104AA6 /* OtmTableViewController.swift */,
@@ -180,6 +183,7 @@
 				6F5B5F7229DA146400E05163 /* UdacitySchema.swift in Sources */,
 				6F9D7D6529B3AD6500104AA6 /* MapViewController.swift in Sources */,
 				6F5B5F7029DA13E300E05163 /* UdacityApiClient.swift in Sources */,
+				6F5B5F8029E1F4D600E05163 /* OtmRootNavigationController.swift in Sources */,
 				6F9D7D4B29B3A7AF00104AA6 /* AppDelegate.swift in Sources */,
 				6F9D7D4D29B3A7AF00104AA6 /* SceneDelegate.swift in Sources */,
 				6F9D7D6329B3AA9500104AA6 /* StudentLocation.swift in Sources */,

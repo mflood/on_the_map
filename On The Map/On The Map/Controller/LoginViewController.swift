@@ -65,15 +65,10 @@ class LoginViewController: UIViewController {
     func navigateToMainApp(udacitySessionResponse: UdacitySessionResponse) {
         DispatchQueue.main.async {
             self.passwordTextfield.text = ""
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
             
-            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmTabBarController") as! OtmTabBarController
-            if self.navigationController != nil {
-                self.navigationController?.setViewControllers([otmTabBarController], animated: true)
-            } else {
-                otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-                self.present(otmTabBarController, animated: true)
-            }
-          
+            otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.present(otmTabBarController, animated: true)
         }
     }
     

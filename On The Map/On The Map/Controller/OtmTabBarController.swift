@@ -16,6 +16,24 @@ class OtmTabBarController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.loadStudentLocations()
+        
+        self.navigationItem.title = "On The Smap"
+        
+        let logoutButton = UIBarButtonItem(title: "Logout", image: nil, target: self, action: #selector(logoutTapped))
+        self.navigationItem.leftBarButtonItem = logoutButton
+        
+    }
+    
+    @objc func logoutTapped() {
+        self.navigateToLoginScreen()
+    }
+
+    
+    func navigateToLoginScreen() {
+
+        let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(otmTabBarController, animated: true)
     }
 
     func loadStudentLocations() {
