@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StudentLocation: Codable {
+class StudentInformation: Codable {
     
     var objectId: String    // uniquely identifies a StudentLocation (ZExGR5uX8)
     var uniqueKey: String?  // populate this value using your Udacity account id (1234)
@@ -39,6 +39,6 @@ class StudentLocation: Codable {
 
 class StudentLocationResponse: Codable {
         
-    var results: [StudentLocation]
+    var results: [StudentInformation]
 }
 

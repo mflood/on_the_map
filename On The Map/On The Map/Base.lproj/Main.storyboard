@@ -156,30 +156,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="vDI-ld-pHv" kind="relationship" relationship="viewControllers" id="uty-cN-TOQ"/>
-                        <segue destination="CKD-6N-PPn" kind="relationship" relationship="viewControllers" id="bbI-Di-RQP"/>
+                        <segue destination="OBt-Sr-yLe" kind="relationship" relationship="viewControllers" id="ZNC-t5-We4"/>
                     </connections>
                 </tabBarController>
             </objects>
             <point key="canvasLocation" x="1743" y="-164"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="gMJ-Fa-gpt">
-            <objects>
-                <navigationController id="CKD-6N-PPn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" id="ICk-Ls-cbm"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2n4-3b-bTZ">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="OBt-Sr-yLe" kind="relationship" relationship="rootViewController" id="Pu0-6X-2tZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JgL-sj-zwl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1935" y="547"/>
-        </scene>
-        <!--Otm Table View Controller-->
+        <!--Item-->
         <scene sceneID="eG0-dG-Ej7">
             <objects>
                 <viewController id="OBt-Sr-yLe" customClass="OtmTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,6 +203,7 @@
                             <constraint firstItem="RRb-g7-JmC" firstAttribute="bottom" secondItem="mdx-6R-yke" secondAttribute="bottom" id="ltk-TW-NHn"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="VGX-kf-CrE"/>
                     <navigationItem key="navigationItem" id="0xz-9H-uQT"/>
                     <connections>
                         <outlet property="tableView" destination="RRb-g7-JmC" id="3ik-Zh-E2w"/>
@@ -227,11 +211,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO2-t5-vv4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3392" y="489"/>
+            <point key="canvasLocation" x="3127" y="311"/>
         </scene>
     </scenes>
     <resources>
-        <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>

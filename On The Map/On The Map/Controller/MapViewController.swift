@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
 
-    var studentLocations: [StudentLocation]! {
+    var studentLocations: [StudentInformation]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.studentLocations
@@ -25,36 +25,23 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addStudentLocationsToMap()
         // Do any additional setup after loading the view.
-        self.loadStudentLocations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let stu = self.studentLocations
-        print("Map view appearing: \(stu?.count) studentLocations")
+        
     }
     
-
-    
-    
-    func loadStudentLocations() {
-        getStudentLocations(callback: handleGetAnnotations)
+    func addStudentLocationsToMap() {
+        
+        let annotations = self.makeAnnotations(studentLocations: self.studentLocations)
+        self.mapView.addAnnotations(annotations)
     }
     
-    func handleGetAnnotations(studentLocations: [StudentLocation]?, _ error: String?) {
-        
-        guard let studentLocations = studentLocations else {
-            return
-        }
-        
-        let annotations = self.makeAnnotations(studentLocations: studentLocations)
-        
-        DispatchQueue.main.async {
-            self.mapView.addAnnotations(annotations)
-        }
-    }
     
-    func makeAnnotations(studentLocations: [StudentLocation]) -> [MKPointAnnotation] {
+    // Build a list of MKPointAnnotation that will appear on the map
+    func makeAnnotations(studentLocations: [StudentInformation]) -> [MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
         

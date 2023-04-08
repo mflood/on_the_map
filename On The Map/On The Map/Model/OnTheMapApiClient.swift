@@ -28,7 +28,7 @@ class OnTheMapApiClient {
     }
 }
 
-func getStudentLocations(callback: @escaping (_ studentLocations: [StudentLocation]?, _ error: String?) -> Void) {
+func getStudentLocations(callback: @escaping (_ studentLocations: [StudentInformation]?, _ error: String?) -> Void) {
     
     let request = URLRequest(url: OnTheMapApiClient.Endpoint.newestLocations.url)
     let session = URLSession.shared

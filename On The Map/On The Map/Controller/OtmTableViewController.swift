@@ -16,7 +16,7 @@ class OtmTableViewController: UIViewController {
     @IBOutlet var peopleTableView: UITableView!
     
     // MARK: - Shared data
-    var studentLocations: [StudentLocation]! {
+    var studentLocations: [StudentInformation]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.studentLocations

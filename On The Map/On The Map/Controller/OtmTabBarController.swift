@@ -22,15 +22,21 @@ class OtmTabBarController: UITabBarController {
         let logoutButton = UIBarButtonItem(title: "Logout", image: nil, target: self, action: #selector(logoutTapped))
         self.navigationItem.leftBarButtonItem = logoutButton
         
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTapped))
+        self.navigationItem.rightBarButtonItem = refreshButton
+
     }
     
     @objc func logoutTapped() {
         self.navigateToLoginScreen()
     }
 
+    @objc func refreshTapped() {
+        self.loadStudentLocations()
+    }
     
     func navigateToLoginScreen() {
-
         let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(otmTabBarController, animated: true)
@@ -40,7 +46,7 @@ class OtmTabBarController: UITabBarController {
         getStudentLocations(callback: handleGetAnnotations)
     }
     
-    func handleGetAnnotations(studentLocations: [StudentLocation]?, _ error: String?) {
+    func handleGetAnnotations(studentLocations: [StudentInformation]?, _ error: String?) {
         
         guard let studentLocations = studentLocations else {
             return
