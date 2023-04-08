@@ -85,10 +85,10 @@ class MapViewController: UIViewController {
             annotation.coordinate = coordinate
             annotation.title = "\(studentLocation.firstName) \(studentLocation.lastName)"
             annotation.subtitle = studentLocation.mediaUrl
-            if studentLocation.mediaUrl != "" {
-                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "yellow")
-                        pinView.pinTintColor = .yellow
-            }
+            //if studentLocation.mediaUrl != "" {
+            //    let pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "yellow")
+            //    pinView.markerTintColor = .yellow
+            //}
             
             // Finally we place the annotation in an array of annotations.
             annotations.append(annotation)
