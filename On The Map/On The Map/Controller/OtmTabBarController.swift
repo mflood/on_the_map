@@ -32,6 +32,7 @@ class OtmTabBarController: UITabBarController {
     }
     
     @objc func logoutTapped() {
+        deleteUdacitySession()
         self.navigateToLoginScreen()
     }
 
