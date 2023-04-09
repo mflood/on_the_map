@@ -28,8 +28,13 @@ class OtmTabBarController: UITabBarController {
         
         
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTapped))
-        self.navigationItem.rightBarButtonItem = refreshButton
+        // self.navigationItem.rightBarButtonItem = refreshButton
+        
+        let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemTapped))
+        self.navigationItem.rightBarButtonItems = [refreshButton, addNewItemButton]
     }
+    
+    
     
     @objc func logoutTapped() {
         deleteUdacitySession()
@@ -38,6 +43,11 @@ class OtmTabBarController: UITabBarController {
 
     @objc func refreshTapped() {
         self.fetchStudentInformation()
+    }
+    
+    
+    @objc func addNewItemTapped() {
+       //
     }
     
     func navigateToLoginScreen() {
