@@ -45,10 +45,16 @@ class OtmTabBarController: UITabBarController {
         self.fetchStudentInformation()
     }
     
-    
     @objc func addNewItemTapped() {
-       //
+       navigateToAddInfoView()
     }
+    
+    func navigateToAddInfoView() {
+        let addLocationController = self.storyboard!.instantiateViewController(withIdentifier: "AddLocationView") as! UINavigationController
+        addLocationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(addLocationController, animated: true)
+    }
+    
     
     func navigateToLoginScreen() {
         let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

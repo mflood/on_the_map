@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 struct UdacityUser: Codable {
     var username: String
     var password: String

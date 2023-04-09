@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+
+
 class UdacityApiClient {
     
     enum Endpoint {
@@ -59,6 +61,11 @@ func getUdacitySession(udacitySessionRequest: UdacitySessionRequest, callback:  
         do {
             // chop off first 5 bytes... because it is junk
             response = try decoder.decode(UdacitySessionResponse.self, from: newData)
+            
+            let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            appDelegate.udacitySessionResponse = response
+            
             callback(response, nil)
         } catch {
             
@@ -101,6 +108,11 @@ func deleteUdacitySession() {
         
         let newData = data.dropFirst(5)
         print(String(data: newData, encoding: .utf8)!)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.udacitySessionResponse = nil
+    
     }
     
     task.resume()

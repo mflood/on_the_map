@@ -12,8 +12,11 @@ import MapKit
 class PinToMapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    var pinAnnotation: MKPointAnnotation?
+    // var pinAnnotation: MKPointAnnotation?
+    
+    // Set these before presenting view
     var pinCoordinate: CLLocationCoordinate2D!
+    var mapString: String!
     var url: String!
     
     override func viewDidLoad() {
@@ -25,14 +28,49 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func handleFinishButtonClicked(_ sender: Any) {
-        print(sender)
+
+
+        let newRequest = AddStudentInformationRequest(mapString: self.mapString,
+                                                      mediaUrl: self.url,
+                                                      latitude: Float(self.pinCoordinate.latitude),
+                                                      longitude: Float(self.pinCoordinate.longitude)
+        )
+        postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+    }
+    
+    
+    func handlePostStudentLocationResponse(error: String?) {
+        
+        if let error = error {
+            let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
+
+            // Add an action to the alert
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                // Handle the OK action
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            navigateToMainTabView()
+        }
+    }
+    
+    func navigateToMainTabView() {
+        DispatchQueue.main.async {
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
+            
+            otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            // self.navigationController?.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+            self.present(otmTabBarController, animated: true)
+        }
     }
     
     func addPinToMap(coordinate: CLLocationCoordinate2D) {
         let newPin = MKPointAnnotation()
         newPin.coordinate = coordinate
         mapView.addAnnotation(newPin)
-        pinAnnotation = newPin
+        // pinAnnotation = newPin
     }
     
     func centerMap(coordinate: CLLocationCoordinate2D) {

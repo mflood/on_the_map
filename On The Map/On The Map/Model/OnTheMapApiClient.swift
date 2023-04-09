@@ -28,6 +28,13 @@ class OnTheMapApiClient {
     }
 }
 
+func postStudentLocation(addStudentInformationRequest: AddStudentInformationRequest, callback: @escaping (_ error: String?) -> Void) {
+    
+//    callback("Oops")
+    callback(nil)
+    
+}
+
 func getStudentLocations(callback: @escaping (_ studentLocations: [StudentInformation]?, _ error: String?) -> Void) {
     
     let request = URLRequest(url: OnTheMapApiClient.Endpoint.newestLocations.url)

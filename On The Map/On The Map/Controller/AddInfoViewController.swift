@@ -18,6 +18,9 @@ class AddInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let logoutButton = UIBarButtonItem(title: "Cancel", image: nil, target: self, action: #selector(cancelTapped))
+        self.navigationItem.leftBarButtonItem = logoutButton
     }
     
     @IBAction func handleFindButtonClicked(_ sender: Any) {
@@ -33,6 +36,20 @@ class AddInfoViewController: UIViewController {
         }
     }
     
+    @objc func cancelTapped() {
+        navigateToMainTabView()
+    }
+    
+    
+    func navigateToMainTabView() {
+        DispatchQueue.main.async {
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
+            
+            otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.present(otmTabBarController, animated: true)
+        }
+    }
+
     func geocodeAddress(address: String) {
         let geocoder = CLGeocoder()
         // let address = "1600 Amphitheatre Parkway, Mountain View, CA"
@@ -64,6 +81,7 @@ class AddInfoViewController: UIViewController {
         
         pinToMapViewController.pinCoordinate = coordinate
         pinToMapViewController.url = self.urlTextField.text ?? ""
+        pinToMapViewController.mapString = self.addressTextField.text ?? ""
         
        // otmTabBarController.modalPresentationStyle = //UIModalPresentationStyle.fullScreen
         self.navigationController?.show(pinToMapViewController, sender: self)
