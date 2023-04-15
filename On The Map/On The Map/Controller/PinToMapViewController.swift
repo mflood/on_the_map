@@ -35,16 +35,17 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
                                                       latitude: Float(self.pinCoordinate.latitude),
                                                       longitude: Float(self.pinCoordinate.longitude)
         )
-        
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        if let objectId = appDelegate.myLocationObjectId {
-            // update existing...
-            putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
-
-        } else {
-            // create new
-            postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+        DispatchQueue.main.async {
+            let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            if let objectId = appDelegate.myLocationObjectId {
+                // update existing...
+                putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
+                
+            } else {
+                // create new
+                postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+            }
         }
         
     }
@@ -68,9 +69,11 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     func handlePostStudentLocationResponse(objectId: String?, error: String?) {
         
         // Store the new objectId so we can do updates next time
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.myLocationObjectId = objectId
+        DispatchQueue.main.async {
+            let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            appDelegate.myLocationObjectId = objectId
+        }
         
         if let error = error {
             let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
