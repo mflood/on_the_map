@@ -115,6 +115,7 @@ extension MapViewController: MKMapViewDelegate {
                                         as? MKMarkerAnnotationView {
                dequeuedView.annotation = annotation
                view = dequeuedView
+               view.markerTintColor = .green
            } else {
                view =
                    MKMarkerAnnotationView(annotation: annotation,

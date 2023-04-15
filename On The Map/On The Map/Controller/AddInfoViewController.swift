@@ -43,7 +43,7 @@ class AddInfoViewController: UIViewController {
     
     func navigateToMainTabView() {
         DispatchQueue.main.async {
-            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! UINavigationController
             
             otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             self.present(otmTabBarController, animated: true)

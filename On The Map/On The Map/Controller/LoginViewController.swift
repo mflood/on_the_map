@@ -45,8 +45,6 @@ class LoginViewController: UIViewController {
     func handleUdacitySessionResponse(udacitySessionResponse: UdacitySessionResponse?, error: String?) {
         
         if DEBUG_SKIP_LOGIN {
-            let fakeResponse = UdacitySessionResponse(account: UdacityAccount(registered: true, key: "04305036399"),
-                                                      session: UdacitySession(id: "7740545436S0b45310ec01d724572bce219437a2231", expiration: "2023-04-04T00:24:08.238983Z"))
             navigateToMainApp()
             return
         }
@@ -55,7 +53,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async { // IfKU4D%t2@TBE&q&
                 self.showAlert(title: "Login Failed", message: error)
             }
-        } else if let udacitySessionResponse = udacitySessionResponse {
+        } else if udacitySessionResponse != nil {
             navigateToMainApp()
         } else {
             showAlert(title: "Login Failed", message: "Unknown error.")
@@ -65,7 +63,7 @@ class LoginViewController: UIViewController {
     func navigateToMainApp() {
         DispatchQueue.main.async {
             self.passwordTextfield.text = ""
-            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! UINavigationController
             
             otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             self.present(otmTabBarController, animated: true)

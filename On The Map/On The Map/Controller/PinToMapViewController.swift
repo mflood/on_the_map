@@ -92,10 +92,9 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     
     func navigateToMainTabView() {
         DispatchQueue.main.async {
-            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! OtmRootNavigationController
+            let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "OtmRootNavigationController") as! UINavigationController
             
             otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-            // self.navigationController?.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>)
             self.present(otmTabBarController, animated: true)
         }
     }
@@ -104,7 +103,6 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
         let newPin = MKPointAnnotation()
         newPin.coordinate = coordinate
         mapView.addAnnotation(newPin)
-        // pinAnnotation = newPin
     }
     
     func centerMap(coordinate: CLLocationCoordinate2D) {
