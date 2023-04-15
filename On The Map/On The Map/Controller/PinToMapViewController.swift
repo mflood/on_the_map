@@ -35,11 +35,42 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
                                                       latitude: Float(self.pinCoordinate.latitude),
                                                       longitude: Float(self.pinCoordinate.longitude)
         )
-        postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        if let objectId = appDelegate.myLocationObjectId {
+            // update existing...
+            putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
+
+        } else {
+            // create new
+            postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+        }
+        
     }
     
+    func handleUpdateStudentLocationResponse(error: String?) {
+        if let error = error {
+            let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
+
+            // Add an action to the alert
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                // Handle the OK action
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            navigateToMainTabView()
+        }
+    }
     
-    func handlePostStudentLocationResponse(error: String?) {
+    func handlePostStudentLocationResponse(objectId: String?, error: String?) {
+        
+        // Store the new objectId so we can do updates next time
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.myLocationObjectId = objectId
         
         if let error = error {
             let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)

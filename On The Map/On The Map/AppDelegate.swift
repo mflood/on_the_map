@@ -12,6 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var studentInformation: [StudentInformation] = []
     var udacitySessionResponse: UdacitySessionResponse? = nil
+    // when we add our location, store the object Id so that
+    // subsequent calls will update instead of create new...
+    var myLocationObjectId: String? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

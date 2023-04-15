@@ -14,7 +14,8 @@ class OnTheMapApiClient {
         
         case newestLocations
         case postNewLocation
-        
+        case putUpdateLocation(objectId : String)
+
         var stringValue: String {
             switch self {
                 
@@ -22,6 +23,8 @@ class OnTheMapApiClient {
                 return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt"
             case .postNewLocation:
                 return "https://onthemap-api.udacity.com/v1/StudentLocation"
+            case let .putUpdateLocation(objectId):
+                return "https://onthemap-api.udacity.com/v1/StudentLocation/\(objectId)"
             }
         }
         
@@ -30,20 +33,19 @@ class OnTheMapApiClient {
         }
     }
 }
-
-func postStudentLocation(addStudentInformationRequest: AddStudentInformationRequest, callback: @escaping (_ error: String?) -> Void) {
+                    
+func putStudentLocation(objectId: String, addStudentInformationRequest: AddStudentInformationRequest, callback: @escaping (_ error: String?) -> Void) {
     
+    print("Updating exiting pin")
     let encoder = JSONEncoder()
     guard let jsonData = try? encoder.encode(addStudentInformationRequest) else {
         callback("Could not convert request to json")
         return
     }
 
-    var request = URLRequest(url: OnTheMapApiClient.Endpoint.postNewLocation.url)
-    request.httpMethod = "POST"
+    var request = URLRequest(url: OnTheMapApiClient.Endpoint.putUpdateLocation(objectId: objectId).url)
+    request.httpMethod = "PUT"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-//    request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
     
     request.httpBody = jsonData
     let session = URLSession.shared
@@ -51,13 +53,42 @@ func postStudentLocation(addStudentInformationRequest: AddStudentInformationRequ
         if error != nil { // Handle error…
             callback(error!.localizedDescription)
         }
-        print(String(data: data!, encoding: .utf8)!)
+        print(data!)
         callback(nil)
-        
     }
     task.resume()
+}
+                   
+func postStudentLocation(addStudentInformationRequest: AddStudentInformationRequest, callback: @escaping (_ objectId: String?, _ error: String?) -> Void) {
     
+    let encoder = JSONEncoder()
+    guard let jsonData = try? encoder.encode(addStudentInformationRequest) else {
+        callback(nil, "Could not convert request to json")
+        return
+    }
+
+    var request = URLRequest(url: OnTheMapApiClient.Endpoint.postNewLocation.url)
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
+    request.httpBody = jsonData
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { data, response, error in
+        if error != nil { // Handle error…
+            callback(nil, error!.localizedDescription)
+        }
+        
+        let decoder = JSONDecoder()
+        var response: PostStudentInformationResponse
+
+        do {
+            response = try decoder.decode(PostStudentInformationResponse.self, from: data!)
+            callback(response.objectId, nil)
+        } catch {
+            callback(nil, "\(error)")
+        }
+    }
+    task.resume()
 }
 
 func getStudentLocations(callback: @escaping (_ studentLocations: [StudentInformation]?, _ error: String?) -> Void) {

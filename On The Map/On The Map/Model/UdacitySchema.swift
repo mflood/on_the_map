@@ -31,8 +31,6 @@ struct UdacitySessionRequest: Codable {
     }
 }
 
-
-
 struct UdacityAccount: Codable {
     var registered: Bool
     var key: String

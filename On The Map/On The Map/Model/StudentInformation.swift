@@ -33,6 +33,11 @@ struct AddStudentInformationRequest: Codable {
     }
 }
 
+struct PostStudentInformationResponse: Codable {
+    var objectId: String
+    var createdAt: String
+}
+
 struct StudentInformation: Codable {
     
     var objectId: String    // uniquely identifies a StudentLocation (ZExGR5uX8)

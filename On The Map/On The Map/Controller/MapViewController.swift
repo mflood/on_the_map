@@ -57,6 +57,11 @@ class MapViewController: UIViewController {
     
     func addStudentLocationsToMap() {
         let annotations = self.makeAnnotations(studentLocations: self.studentLocations)
+        
+        // clear the current annotations
+        let currentAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(currentAnnotations)
+        
         self.mapView.addAnnotations(annotations)
     }
     
