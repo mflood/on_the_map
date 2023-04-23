@@ -20,7 +20,7 @@ class OnTheMapApiClient {
             switch self {
                 
             case .newestLocations:
-                return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt"
+                return "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt&limit=100"
             case .postNewLocation:
                 return "https://onthemap-api.udacity.com/v1/StudentLocation"
             case let .putUpdateLocation(objectId):
