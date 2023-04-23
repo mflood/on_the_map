@@ -19,30 +19,29 @@ class OtmTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.fetchStudentInformation()
+        fetchStudentInformation()
         
-        self.navigationItem.title = "On The Smap"
+        navigationItem.title = "On The Smap"
         
         let logoutButton = UIBarButtonItem(title: "Logout", image: nil, target: self, action: #selector(logoutTapped))
-        self.navigationItem.leftBarButtonItem = logoutButton
+        navigationItem.leftBarButtonItem = logoutButton
         
         
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTapped))
-        // self.navigationItem.rightBarButtonItem = refreshButton
         
         let addNewItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemTapped))
-        self.navigationItem.rightBarButtonItems = [refreshButton, addNewItemButton]
+        navigationItem.rightBarButtonItems = [refreshButton, addNewItemButton]
     }
     
     
     
     @objc func logoutTapped() {
         deleteUdacitySession()
-        self.navigateToLoginScreen()
+        navigateToLoginScreen()
     }
 
     @objc func refreshTapped() {
-        self.fetchStudentInformation()
+        fetchStudentInformation()
     }
     
     @objc func addNewItemTapped() {
@@ -50,17 +49,17 @@ class OtmTabBarController: UITabBarController {
     }
     
     func navigateToAddInfoView() {
-        let addLocationController = self.storyboard!.instantiateViewController(withIdentifier: "AddLocationView") as! UINavigationController
+        let addLocationController = storyboard!.instantiateViewController(withIdentifier: "AddLocationView") as! UINavigationController
         addLocationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(addLocationController, animated: true)
+        present(addLocationController, animated: true)
     }
     
     func navigateToLoginScreen() {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 
     func updateUiForDataLoad(isLoading: Bool) {
-        self.navigationItem.rightBarButtonItem?.isEnabled = !isLoading
+        navigationItem.rightBarButtonItem?.isEnabled = !isLoading
         
     }
     

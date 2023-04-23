@@ -26,8 +26,8 @@ class OtmTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.peopleTableView.delegate = self
-        self.peopleTableView.dataSource = self
+        peopleTableView.delegate = self
+        peopleTableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class OtmTableViewController: UIViewController {
 extension OtmTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.studentLocations.count
+        return studentLocations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +49,7 @@ extension OtmTableViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OtmTableViewCell")!
         
         
-        let studentLocation = self.studentLocations[(indexPath as NSIndexPath).row]
+        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
         
         // Set the name and image
         cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
@@ -68,7 +68,7 @@ extension OtmTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // If the studentLocation has a mediaUrl, open it in safari
-        let studentLocation = self.studentLocations[(indexPath as NSIndexPath).row]
+        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
         if let url = URL(string: studentLocation.mediaUrl) {
             UIApplication.shared.open(url)
         }

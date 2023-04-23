@@ -20,12 +20,12 @@ class AddInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let logoutButton = UIBarButtonItem(title: "Cancel", image: nil, target: self, action: #selector(cancelTapped))
-        self.navigationItem.leftBarButtonItem = logoutButton
+        navigationItem.leftBarButtonItem = logoutButton
     }
     
     @IBAction func handleFindButtonClicked(_ sender: Any) {
         
-        if let address = self.addressTextField.text {
+        if let address = addressTextField.text {
             geocodeAddress(address: address)
         }
     }
@@ -77,14 +77,14 @@ class AddInfoViewController: UIViewController {
     }
     
     func navigateToPinToMap(coordinate: CLLocationCoordinate2D) {
-        let pinToMapViewController = self.storyboard!.instantiateViewController(withIdentifier: "PinToMapViewController") as! PinToMapViewController
+        let pinToMapViewController = storyboard!.instantiateViewController(withIdentifier: "PinToMapViewController") as! PinToMapViewController
         
         pinToMapViewController.pinCoordinate = coordinate
-        pinToMapViewController.url = self.urlTextField.text ?? ""
-        pinToMapViewController.mapString = self.addressTextField.text ?? ""
+        pinToMapViewController.url = urlTextField.text ?? ""
+        pinToMapViewController.mapString = addressTextField.text ?? ""
         
        // otmTabBarController.modalPresentationStyle = //UIModalPresentationStyle.fullScreen
-        self.navigationController?.show(pinToMapViewController, sender: self)
+        navigationController?.show(pinToMapViewController, sender: self)
     }
     
     func showGeocodeError(error: String) {
@@ -96,7 +96,7 @@ class AddInfoViewController: UIViewController {
         }
         
         alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
    

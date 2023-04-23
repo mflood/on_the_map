@@ -25,13 +25,13 @@ class LoginViewController: UIViewController {
 
     @IBAction func handleLoginButtonClicked(_ sender: Any) {
         
-        guard let emailText = self.emailTextfield.text,
+        guard let emailText = emailTextfield.text,
             emailText != ""  else {
             showAlert(title: "Login Failed", message: "Provide a username")
             return
         }
         
-        guard let passwordText = self.passwordTextfield.text,
+        guard let passwordText = passwordTextfield.text,
               passwordText != ""  else {
             showAlert(title: "Login Failed", message: "Provide a password")
             return

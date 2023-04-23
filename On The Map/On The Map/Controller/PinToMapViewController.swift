@@ -22,18 +22,18 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        self.addPinToMap(coordinate: self.pinCoordinate)
-        self.centerMap(coordinate: self.pinCoordinate)
+        addPinToMap(coordinate: pinCoordinate)
+        centerMap(coordinate: pinCoordinate)
         
     }
     
     @IBAction func handleFinishButtonClicked(_ sender: Any) {
 
 
-        let newRequest = AddStudentInformationRequest(mapString: self.mapString,
-                                                      mediaUrl: self.url,
-                                                      latitude: Float(self.pinCoordinate.latitude),
-                                                      longitude: Float(self.pinCoordinate.longitude)
+        let newRequest = AddStudentInformationRequest(mapString: mapString,
+                                                      mediaUrl: url,
+                                                      latitude: Float(pinCoordinate.latitude),
+                                                      longitude: Float(pinCoordinate.longitude)
         )
         DispatchQueue.main.async {
             let object = UIApplication.shared.delegate
@@ -60,7 +60,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
             }
             
             alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         } else {
             navigateToMainTabView()
         }
@@ -110,7 +110,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     // adjust the map so that the coordinate is showing
     // at the center of the view
     func centerMap(coordinate: CLLocationCoordinate2D) {
-        self.mapView.centerCoordinate = coordinate
+        mapView.centerCoordinate = coordinate
     }
     
     // Map view delegate method to allow the user to drag the pin around
@@ -126,8 +126,8 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     // Capture the final coordinate
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         if newState == .ending {
-            self.pinCoordinate = view.annotation?.coordinate
-            print("New pin Location: \(self.pinCoordinate?.latitude ?? 0), \(self.pinCoordinate?.longitude ?? 0)")
+            pinCoordinate = view.annotation?.coordinate
+            print("New pin Location: \(pinCoordinate?.latitude ?? 0), \(pinCoordinate?.longitude ?? 0)")
         }
     }
 }

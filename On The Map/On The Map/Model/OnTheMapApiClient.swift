@@ -29,7 +29,7 @@ class OnTheMapApiClient {
         }
         
         var url: URL {
-            return URL(string: self.stringValue)!
+            return URL(string: stringValue)!
         }
     }
     
