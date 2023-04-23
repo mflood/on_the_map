@@ -40,11 +40,11 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
             let appDelegate = object as! AppDelegate
             if let objectId = appDelegate.myLocationObjectId {
                 // update existing...
-                putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
+                OnTheMapApiClient.putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
                 
             } else {
                 // create new
-                postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+                OnTheMapApiClient.postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
             }
         }
         

@@ -66,7 +66,7 @@ class OtmTabBarController: UITabBarController {
     
     func fetchStudentInformation() {
         updateUiForDataLoad(isLoading: true)
-        getStudentLocations(callback: handleStudentInformationResponse)
+        OnTheMapApiClient.getStudentLocations(callback: handleStudentInformationResponse)
     }
     
     func handleStudentInformationResponse(studentInformationList: [StudentInformation]?, _ errorString: String?) {
