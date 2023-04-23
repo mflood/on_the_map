@@ -14,6 +14,7 @@ class AddInfoViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var geocodingActivityIndicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +51,22 @@ class AddInfoViewController: UIViewController {
         }
     }
 
+    // address  is something like
+    // "1600 Amphitheatre Parkway, Mountain View, CA"
+    //
     func geocodeAddress(address: String) {
+        
+        
+        self.geocodingActivityIndicatorView.startAnimating()
+
         let geocoder = CLGeocoder()
-        // let address = "1600 Amphitheatre Parkway, Mountain View, CA"
+        
         geocoder.geocodeAddressString(address) { [self] (placemarks, error) in
+            
+            DispatchQueue.main.async {
+                self.geocodingActivityIndicatorView.stopAnimating()
+            }
+            
             if let error = error {
                 DispatchQueue.main.async {
                     self.showGeocodeError(error: error.localizedDescription )
