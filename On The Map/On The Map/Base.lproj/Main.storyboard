@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -19,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8JP-k8-Vn1">
-                                <rect key="frame" x="16" y="89" width="361" height="412"/>
+                                <rect key="frame" x="16" y="89" width="361" height="342"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="Ci7-1R-tGp">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="62"/>
@@ -47,16 +48,8 @@
                                             <action selector="handleLoginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WFs-JE-9r8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUw-b9-YGG">
-                                        <rect key="frame" x="0.0" y="280" width="361" height="62"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                        <connections>
-                                            <action selector="testMapApi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mtY-cA-zyc"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xXA-KO-HoB">
-                                        <rect key="frame" x="0.0" y="350" width="361" height="62"/>
+                                        <rect key="frame" x="0.0" y="280" width="361" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoE-bD-Pla">
                                                 <rect key="frame" x="0.0" y="21" width="245.66666666666666" height="20.333333333333329"/>
@@ -178,11 +171,16 @@
                                     <action selector="handleFindButtonClicked:" destination="kid-yG-Z3s" eventType="touchUpInside" id="Q6C-9g-5SR"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="VKJ-Il-b5I">
+                                <rect key="frame" x="178" y="416" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QPh-9w-dmd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QPh-9w-dmd" firstAttribute="trailing" secondItem="n6x-zH-U9m" secondAttribute="trailing" constant="40" id="2uT-U8-3Nd"/>
+                            <constraint firstItem="VKJ-Il-b5I" firstAttribute="top" secondItem="n6x-zH-U9m" secondAttribute="bottom" constant="53" id="8Qb-et-b8I"/>
+                            <constraint firstItem="VKJ-Il-b5I" firstAttribute="centerX" secondItem="7Mg-zG-F7S" secondAttribute="centerX" id="H6g-4a-fdE"/>
                             <constraint firstItem="QPh-9w-dmd" firstAttribute="trailing" secondItem="ml3-4s-J9v" secondAttribute="trailing" constant="40" id="Kl3-aB-oqL"/>
                             <constraint firstItem="n6x-zH-U9m" firstAttribute="leading" secondItem="QPh-9w-dmd" secondAttribute="leading" constant="40" id="N6t-KV-KMF"/>
                             <constraint firstItem="ml3-4s-J9v" firstAttribute="leading" secondItem="QPh-9w-dmd" secondAttribute="leading" constant="40" id="Qsc-Xi-nEd"/>
@@ -199,6 +197,7 @@
                     <connections>
                         <outlet property="addressTextField" destination="ml3-4s-J9v" id="moe-hx-rz7"/>
                         <outlet property="button" destination="n6x-zH-U9m" id="Vsr-KN-aDv"/>
+                        <outlet property="geocodingActivityIndicatorView" destination="VKJ-Il-b5I" id="y1n-Jk-4h7"/>
                         <outlet property="urlTextField" destination="nGn-C4-4JT" id="WEZ-Mh-EI9"/>
                     </connections>
                 </viewController>

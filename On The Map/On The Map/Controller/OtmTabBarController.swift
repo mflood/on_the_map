@@ -55,6 +55,7 @@ class OtmTabBarController: UITabBarController {
     }
     
     func navigateToLoginScreen() {
+        
         dismiss(animated: true)
     }
 

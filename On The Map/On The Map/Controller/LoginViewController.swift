@@ -87,10 +87,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    @IBAction func testMapApi(_ sender: Any) {
-       
-    }
-    
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
