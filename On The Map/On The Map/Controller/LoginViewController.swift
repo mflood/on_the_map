@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         }
         
         guard let passwordText = passwordTextfield.text,
-              passwordText != ""  else {
+            passwordText != ""  else {
             showAlert(title: "Login Failed", message: "Provide a password")
             return
         }

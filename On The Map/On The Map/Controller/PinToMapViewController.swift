@@ -23,8 +23,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         addPinToMap(coordinate: pinCoordinate)
-        centerMap(coordinate: pinCoordinate)
-        
+        centerAndZoomMap(coordinate: pinCoordinate)
     }
     
     @IBAction func handleFinishButtonClicked(_ sender: Any) {
@@ -109,8 +108,16 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     
     // adjust the map so that the coordinate is showing
     // at the center of the view
-    func centerMap(coordinate: CLLocationCoordinate2D) {
-        mapView.centerCoordinate = coordinate
+    func centerAndZoomMap(coordinate: CLLocationCoordinate2D) {
+        
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(
+              center: coordinate,
+              latitudinalMeters: regionRadius,
+              longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
+       // mapView.centerCoordinate = coordinate
     }
     
     // Map view delegate method to allow the user to drag the pin around

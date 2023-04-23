@@ -55,9 +55,7 @@ class OtmTabBarController: UITabBarController {
     }
     
     func navigateToLoginScreen() {
-        let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(otmTabBarController, animated: true)
+        self.dismiss(animated: true)
     }
 
     func updateUiForDataLoad(isLoading: Bool) {
@@ -114,6 +112,13 @@ class OtmTabBarController: UITabBarController {
         
     }
     
+    func dismiss(animated flag: Bool) {
+        // Login View is not in the Navigation Controller,
+        // so we replace instead of dimiss
+        let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(otmTabBarController, animated: flag)
+    }
 }
 
 
