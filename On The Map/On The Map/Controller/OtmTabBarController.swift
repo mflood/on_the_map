@@ -55,11 +55,8 @@ class OtmTabBarController: UITabBarController {
         self.present(addLocationController, animated: true)
     }
     
-    
     func navigateToLoginScreen() {
-        let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(otmTabBarController, animated: true)
+        self.dismiss(animated: true)
     }
 
     func updateUiForDataLoad(isLoading: Bool) {
