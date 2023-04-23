@@ -66,27 +66,31 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // This is the callback invoked by the api after we post a new
+    // StudentInformation.
     func handlePostStudentLocationResponse(objectId: String?, error: String?) {
         
-        // Store the new objectId so we can do updates next time
+        // Store the new objectId on the App Delegate
+        // if a value is set there, then we will use
+        // the "update" endpoint instead of the "new" endpoint
         DispatchQueue.main.async {
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
             appDelegate.myLocationObjectId = objectId
-        }
         
-        if let error = error {
-            let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
+            if let error = error {
+                let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
 
-            // Add an action to the alert
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                // Handle the OK action
+                // Add an action to the alert
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    // Handle the OK action
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                self.navigateToMainTabView()
             }
-            
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            navigateToMainTabView()
         }
     }
     
@@ -99,12 +103,15 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // Add a single empty pin to the map at the given location
     func addPinToMap(coordinate: CLLocationCoordinate2D) {
         let newPin = MKPointAnnotation()
         newPin.coordinate = coordinate
         mapView.addAnnotation(newPin)
     }
     
+    // adjust the map so that the coordinate is showing
+    // at the center of the view
     func centerMap(coordinate: CLLocationCoordinate2D) {
         self.mapView.centerCoordinate = coordinate
     }
