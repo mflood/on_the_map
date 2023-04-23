@@ -83,7 +83,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
 
                 // Add an action to the alert
                 let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                    // Handle the OK action
+                    // nothing to do for the okay action...
                 }
                 
                 alertController.addAction(okAction)

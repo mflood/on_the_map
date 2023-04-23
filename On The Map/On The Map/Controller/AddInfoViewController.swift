@@ -83,7 +83,6 @@ class AddInfoViewController: UIViewController {
         pinToMapViewController.url = urlTextField.text ?? ""
         pinToMapViewController.mapString = addressTextField.text ?? ""
         
-       // otmTabBarController.modalPresentationStyle = //UIModalPresentationStyle.fullScreen
         navigationController?.show(pinToMapViewController, sender: self)
     }
     
