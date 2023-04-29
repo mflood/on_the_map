@@ -50,18 +50,21 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func handleUpdateStudentLocationResponse(error: String?) {
-        if let error = error {
-            let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
-
-            // Add an action to the alert
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                // Handle the OK action
-            }
+        DispatchQueue.main.async {
             
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
-        } else {
-            navigateToMainTabView()
+            if let error = error {
+                let alertController = UIAlertController(title: "Alert", message: error, preferredStyle: .alert)
+                
+                // Add an action to the alert
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    // Handle the OK action
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                self.navigateToMainTabView()
+            }
         }
     }
     
@@ -94,9 +97,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func navigateToMainTabView() {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true)
-        }
+        self.dismiss(animated: true)
     }
     
     // Add a single empty pin to the map at the given location
@@ -134,7 +135,7 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         if newState == .ending {
             pinCoordinate = view.annotation?.coordinate
-            print("New pin Location: \(pinCoordinate?.latitude ?? 0), \(pinCoordinate?.longitude ?? 0)")
+            debugPrint("New pin Location: \(pinCoordinate?.latitude ?? 0), \(pinCoordinate?.longitude ?? 0)")
         }
     }
 }
