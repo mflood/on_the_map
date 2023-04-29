@@ -28,23 +28,32 @@ class PinToMapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func handleFinishButtonClicked(_ sender: Any) {
 
-
-        let newRequest = AddStudentInformationRequest(mapString: mapString,
-                                                      mediaUrl: url,
-                                                      latitude: Float(pinCoordinate.latitude),
-                                                      longitude: Float(pinCoordinate.longitude)
-        )
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
-            if let objectId = appDelegate.myLocationObjectId {
-                // update existing...
-                OnTheMapApiClient.putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
+            if let accountId = appDelegate.udacitySessionResponse?.account.key,
+               let publicUserData = appDelegate.publicUserData {
                 
-            } else {
-                // create new
-                OnTheMapApiClient.postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+                let newRequest = AddStudentInformationRequest(uniqueKey: accountId,
+                                                              firstName: publicUserData.firstName,
+                                                              lastName: publicUserData.lastName,
+                                                              mapString: self.mapString,
+                                                              mediaUrl: self.url,
+                                                              latitude: Float(pinCoordinate.latitude),
+                                                              longitude: Float(pinCoordinate.longitude)
+                )
+                
+                if let objectId = appDelegate.myLocationObjectId {
+                    // update existing...
+                    OnTheMapApiClient.putStudentLocation(objectId: objectId, addStudentInformationRequest: newRequest, callback: self.handleUpdateStudentLocationResponse)
+                    
+                } else {
+                    // create new
+                    OnTheMapApiClient.postStudentLocation(addStudentInformationRequest: newRequest, callback: self.handlePostStudentLocationResponse)
+                }
+                
             }
+
         }
         
     }

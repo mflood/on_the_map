@@ -16,6 +16,7 @@ class OnTheMapApiClient {
         case postNewLocation
         case putUpdateLocation(objectId : String)
 
+
         var stringValue: String {
             switch self {
                 
@@ -32,6 +33,8 @@ class OnTheMapApiClient {
             return URL(string: stringValue)!
         }
     }
+                         
+
     
     class func putStudentLocation(objectId: String, addStudentInformationRequest: AddStudentInformationRequest, callback: @escaping (_ error: String?) -> Void) {
         

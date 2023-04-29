@@ -7,7 +7,7 @@
 
 import UIKit
 
-let DEBUG_SKIP_LOGIN: Bool = true
+let DEBUG_SKIP_LOGIN: Bool = false
 
 class LoginViewController: UIViewController {
 
@@ -45,18 +45,32 @@ class LoginViewController: UIViewController {
     func handleUdacitySessionResponse(udacitySessionResponse: UdacitySessionResponse?, error: String?) {
         
         if DEBUG_SKIP_LOGIN {
-            navigateToMainApp()
+            getPublicStudentInformation(userId: "3903878747")
             return
         }
         
         if let error = error {
-            DispatchQueue.main.async { // IfKU4D%t2@TBE&q&
+            DispatchQueue.main.async {
                 self.showAlert(title: "Login Failed", message: error)
             }
-        } else if udacitySessionResponse != nil {
-            navigateToMainApp()
+        } else if let udacitySessionResponse = udacitySessionResponse {
+            getPublicStudentInformation(userId: udacitySessionResponse.account.key)
         } else {
             showAlert(title: "Login Failed", message: "Unknown error.")
+        }
+    }
+    
+    func getPublicStudentInformation(userId: String) {
+        UdacityApiClient.getPublicUserData(userId: userId, callback: self.handleGetPublicStudentInformationResponse)
+    }
+    
+    func handleGetPublicStudentInformationResponse(_ errorString: String?) {
+        if let error = errorString {
+            DispatchQueue.main.async { //
+                self.showAlert(title: "Getting user information failed", message: error)
+            }
+        } else {
+            navigateToMainApp()
         }
     }
     

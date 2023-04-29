@@ -13,6 +13,20 @@ struct UdacityUser: Codable {
     var password: String
 }
 
+struct PublicUserData: Codable {
+    var firstName: String
+    var lastName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case lastName = "last_name"
+    }
+}
+
+struct PublicUserDataResponse: Codable {
+    var user: PublicUserData
+}
+
 struct UdacitySessionRequest: Codable {
 
     var udacity: UdacityUser

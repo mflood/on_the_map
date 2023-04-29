@@ -8,15 +8,12 @@
 import Foundation
 
 // This is all random
-let TEST_ACCOUNT_ID = "7852912595S70d7578b714a8cb4d05012c4389a959a"
-let TEST_FIRST_NAME = "Edgar Allen"
-let TEST_LAST_NAME = "Poe"
 
 struct AddStudentInformationRequest: Codable {
     
-    var uniqueKey: String = TEST_ACCOUNT_ID
-    var firstName: String = TEST_FIRST_NAME
-    var lastName: String = TEST_LAST_NAME
+    var uniqueKey: String
+    var firstName: String
+    var lastName: String
     var mapString: String   // (Mountain View, CA)
     var mediaUrl: String    // the URL provided by the student (https://udacity.com)
     var latitude: Float       // ranges from -90 to 90 (37.386052)

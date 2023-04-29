@@ -16,10 +16,12 @@ class UdacityApiClient {
         
         case login
         case logout
+        case getPublicUserData(userId: String)
+        case getPublicUserDataFix(userId: String)
         
         var stringValue: String {
             switch self {
-
+                
             case .login:
                 // POST for login
                 return "https://onthemap-api.udacity.com/v1/session"
@@ -27,14 +29,54 @@ class UdacityApiClient {
             case .logout:
                 // DELETE for logout
                 return "https://onthemap-api.udacity.com/v1/session"
+                
+                
+            case let .getPublicUserData(userId):
+                return "https://onthemap-api.udacity.com/v1/users/\(userId)"
+            case let .getPublicUserDataFix(_):
+                return "https://video.udacity-data.com/topher/2016/June/575840d1_get-user-data/get-user-data.json"
             }
-            
-
         }
         
         var url: URL {
             return URL(string: stringValue)!
         }
+    }
+    
+    class func getPublicUserData(userId: String, callback: @escaping (_ errorString: String?) -> Void) {
+        
+        let request = URLRequest(url: UdacityApiClient.Endpoint.getPublicUserDataFix(userId: userId).url)
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil { // Handle error...
+                callback(error?.localizedDescription)
+                return
+            }
+            guard let data = data else {
+                callback(error?.localizedDescription)
+                return
+            }
+
+            let decoder = JSONDecoder()
+            var response: PublicUserDataResponse
+
+            do {
+                response = try decoder.decode(PublicUserDataResponse.self, from: data)
+                
+                DispatchQueue.main.async {
+                    let object = UIApplication.shared.delegate
+                    let appDelegate = object as! AppDelegate
+                    appDelegate.publicUserData = response.user
+                    callback(nil)
+                }
+                
+            } catch {
+                callback("\(error)")
+            }
+        }
+        task.resume()
+        
     }
 }
 

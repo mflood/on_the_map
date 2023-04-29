@@ -10,7 +10,8 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // var studentInformation: [StudentInformation] = []
+    
+    var publicUserData: PublicUserData? = nil
     var udacitySessionResponse: UdacitySessionResponse? = nil
     // when we add our location, store the object Id so that
     // subsequent calls will update instead of create new...
