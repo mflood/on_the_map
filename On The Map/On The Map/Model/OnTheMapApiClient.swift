@@ -77,11 +77,17 @@ class OnTheMapApiClient {
                 callback(nil, error!.localizedDescription)
             }
             
+            guard let data = data else {
+                callback(nil, "Unknown Erorr reading data")
+                return
+            }
+            
+            
             let decoder = JSONDecoder()
             var response: PostStudentInformationResponse
 
             do {
-                response = try decoder.decode(PostStudentInformationResponse.self, from: data!)
+                response = try decoder.decode(PostStudentInformationResponse.self, from: data)
                 callback(response.objectId, nil)
             } catch {
                 callback(nil, "\(error)")
