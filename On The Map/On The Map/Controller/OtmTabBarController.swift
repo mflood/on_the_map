@@ -102,7 +102,7 @@ class OtmTabBarController: UITabBarController {
         DispatchQueue.main.async {
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
-            appDelegate.studentInformation = studentInformation
+            StudentsData.sharedInstance().students = studentInformation
             self.updateUiForDataLoad(isLoading: false)
         }
         

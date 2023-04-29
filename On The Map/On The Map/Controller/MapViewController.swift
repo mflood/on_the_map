@@ -18,9 +18,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     var studentLocations: [StudentInformation]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.studentInformation
+        return StudentsData.sharedInstance().students
     }
     
     override func viewDidLoad() {

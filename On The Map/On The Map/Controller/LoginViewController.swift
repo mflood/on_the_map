@@ -7,7 +7,7 @@
 
 import UIKit
 
-let DEBUG_SKIP_LOGIN: Bool = false
+let DEBUG_SKIP_LOGIN: Bool = true
 
 class LoginViewController: UIViewController {
 
