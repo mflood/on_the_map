@@ -101,7 +101,6 @@ class OtmTabBarController: UITabBarController {
         
         DispatchQueue.main.async {
             let object = UIApplication.shared.delegate
-            let appDelegate = object as! AppDelegate
             StudentsData.sharedInstance().students = studentInformation
             self.updateUiForDataLoad(isLoading: false)
         }
@@ -110,14 +109,6 @@ class OtmTabBarController: UITabBarController {
                                         object: nil, userInfo: nil)
 
         
-    }
-    
-    func dismiss(animated flag: Bool) {
-        // Login View is not in the Navigation Controller,
-        // so we replace instead of dimiss
-        let otmTabBarController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        otmTabBarController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(otmTabBarController, animated: flag)
     }
 }
 
