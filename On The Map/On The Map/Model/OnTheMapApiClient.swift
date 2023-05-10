@@ -52,9 +52,17 @@ class OnTheMapApiClient {
         request.httpBody = jsonData
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error…
+            
+            guard error == nil else {
                 callback(error!.localizedDescription)
+                return
             }
+            
+            guard data != nil else {
+                callback("Could not read response data")
+                return
+            }
+
             print(data!)
             callback(nil)
         }
